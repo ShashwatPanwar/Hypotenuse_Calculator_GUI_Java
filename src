@@ -1,0 +1,89 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class HypoCalc extends JPanel implements ActionListener{
+		JButton a, b, calculate;
+		JLabel instructions, result;
+		double sideA,sideB, hypotenuse;
+		JTextField fieldB, fieldA;
+		String sA, sB;
+	
+	public static void main(String[] args) {
+			JFrame frame = new JFrame("Hypotenuse Calculator - Shashwat Panwar");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.getContentPane().add(new Summative());
+			frame.pack();
+			frame.setVisible(true);
+			Draw triangle = new Draw();
+			frame.add(triangle);
+			triangle.drawing();
+	}
+			
+	public HypoCalc() {
+		a = new JButton("A");
+		b = new JButton("B");
+		fieldA = new JTextField("");
+		fieldB = new JTextField("");
+		calculate = new JButton("Calculate Hypotenuse");
+		instructions = new JLabel ("Please enter the length of the two sides adjacent to the right angle and press calculate");
+		
+		setPreferredSize(new Dimension(1000, 800));
+		setLayout(null);
+		
+		add(a);
+		add(b);
+		add(calculate);
+		add(instructions);
+		add(fieldA);
+		add(fieldB);
+		
+		b.setBounds(510, 250, 50, 50);
+		a.setBounds(340, 410, 50, 50);
+		calculate.setBounds(600,420,200,40);
+		instructions.setBounds(200, 10, 600, 100);
+		
+		a.addActionListener(this);
+		b.addActionListener(this);
+		calculate.addActionListener(this);
+		
+		fieldA.setBounds(340, 470, 100, 50);
+		fieldB.setBounds(570, 250, 100, 50);
+		fieldA.setVisible(false);
+		fieldB.setVisible(false);
+	}
+	public void drawing(){
+		repaint();
+	}
+	public void paint(Graphics g){
+		super.paint(g);
+		int[] x = {200,500,500};
+		int[] y = {400,400,100};
+		g.setColor(Color.GREEN);
+		g.fillPolygon(x, y, 3);
+		
+	}
+		
+	public void actionPerformed(ActionEvent e)
+	{
+		if(e.getSource()== a)
+		{
+			fieldA.setVisible(true);
+		}
+		if(e.getSource()== b)
+		{
+			fieldB.setVisible(true);
+		}
+		if(e.getSource()== calculate)
+		{
+			sideA = Double.parseDouble(fieldA.getText());
+			sideB = Double.parseDouble(fieldB.getText());
+			hypotenuse = Math.sqrt(Math.pow(sideA, 2.0)+Math.pow(sideB, 2.0));
+			result = new JLabel ("The hypotenuse of your triangle is " + hypotenuse + " units long.");
+			result.setVisible(true);
+			add(result);
+			result.setBounds(575, 500, 400, 50);
+		}
+	}
+}
