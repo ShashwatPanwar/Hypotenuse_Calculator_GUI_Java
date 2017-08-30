@@ -80,7 +80,7 @@ public class HypoCalc extends JPanel implements ActionListener{
 			sideA = Double.parseDouble(fieldA.getText());
 			sideB = Double.parseDouble(fieldB.getText());
 			hypotenuse = Math.sqrt(Math.pow(sideA, 2.0)+Math.pow(sideB, 2.0));
-			result = new JLabel ("The hypotenuse of your triangle is " + hypotenuse + " units long.");
+			result = new JLabel ("The hypotenuse of the triangle is " + hypotenuse + " units long.");
 			result.setVisible(true);
 			add(result);
 			result.setBounds(575, 500, 400, 50);
